@@ -109,7 +109,7 @@ h2 {
 }
 
 .task-input-container input[type="text"] {
-    width: calc(100% - 120px);
+    width: calc(100% - 98px);
     padding: 10px;
     font-weight: bold;
     border: 1px solid #ccc;
