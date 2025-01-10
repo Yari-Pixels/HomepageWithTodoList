@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Home Page</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Date, Day of the Week, and Time Display</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    
+    <div class="date-time-container" id="displayContainer">
+        <div class="time" id="timeDisplay"></div>
+        <div class="date-container">
+            <div class="date" id="dateDisplay"></div>
+            <div class="day" id="dayDisplay"></div>
+        </div>
+    </div>
+    
+    <div class="to-do-list-container">
+        <div class="to-do-list-header">
+            <h2>To-Do List</h2>
+            <div class="task-input-container">
+                <input type="text" id="taskInput" placeholder="Add a new task...">
+                <button id="addTaskButton">Add Task</button>
+            </div>
+        </div>
+        <ul id="taskList"></ul>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
