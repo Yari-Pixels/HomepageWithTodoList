@@ -13,6 +13,25 @@ body {
     align-items: center;
     background-image: url(https://img3.gelbooru.com/images/20/5a/205a3f749fcfd78769fa811b23a8ac52.jpg);
 }
+
+input:focus {
+    outline: none; /* Removes the blue border */
+}
+
+.search {
+    position: absolute;
+    top: 20px;
+    left: 550px;
+    right: 310px;
+    width: auto;
+    padding: 10px;
+    font-size: 16px;
+    background-color: rgba(0, 0, 0, 0.411);
+    color: #FBD36A;
+    border: none;
+    font-size: 1.1em;
+}
+
 .date-time-container {
     position: absolute;
     top: 20px;
@@ -26,18 +45,23 @@ body {
     text-align: center;
     color: #8CDCE1;
 }
+
 .date-time-container div {
     padding: 1px 3px;
 }
+
 .date-container {
     text-align: left;
 }
+
 .time {
     font-size: 3em;
 }
+
 .date {
     font-size: 1.5em;
 }
+
 .day {
     font-size: 1.1em;
     color: #FBD36A;

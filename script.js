@@ -18,9 +18,6 @@ function updateDisplay() {
     document.getElementById('timeDisplay').textContent = getCurrentTime();
 }
 
-setInterval(updateDisplay, 1000);
-updateDisplay();
-
 function loadTasks() {
     const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
     tasks.forEach(task => {
@@ -34,7 +31,7 @@ function addTaskToDOM(taskText) {
 
     const deleteButton = document.createElement('button');
     deleteButton.textContent = 'Done';
-    deleteButton.addEventListener('click', function() {
+    deleteButton.addEventListener('click', function () {
         li.remove();
         removeTaskFromStorage(taskText);
     });
@@ -57,7 +54,7 @@ function removeTaskFromStorage(taskText) {
 
 document.addEventListener('DOMContentLoaded', loadTasks);
 
-document.getElementById('addTaskButton').addEventListener('click', function() {
+document.getElementById('addTaskButton').addEventListener('click', function () {
     const taskInput = document.getElementById('taskInput');
     const taskText = taskInput.value.trim();
 
@@ -65,7 +62,50 @@ document.getElementById('addTaskButton').addEventListener('click', function() {
         addTaskToDOM(taskText);
         saveTaskToStorage(taskText);
         taskInput.value = '';
-    } else {
+    }
+    else {
         alert('Please enter a task!');
     }
 });
+
+document.getElementById('searchInput').addEventListener('keypress', function (event) {
+    if (event.key === 'Enter') {
+        const query = searchInput.value;
+        console.log("a")
+        if (query.startsWith('http://') || query.startsWith('https://')) {
+            window.location.href = query;
+        }
+        else if (query.startsWith('yt ')) {
+            window.location.href = 'https://www.youtube.com/results?search_query=' + encodeURIComponent(query.slice(3));
+        }
+        else if (query.startsWith('r/')) {
+            window.location.href = 'https://old.reddit.com/r/' + encodeURIComponent(query.slice(2));
+        }
+        else if (query.startsWith('reddit ')) {
+            window.location.href = 'https://duckduckgo.com/?q=' + encodeURIComponent(query.slice(7)) + ' site:https://www.reddit.com';
+        }
+        else if (query.startsWith('so ')) {
+            window.location.href = 'https://duckduckgo.com/?q=' + encodeURIComponent(query.slice(7)) + ' site:https://stackoverflow.com/';
+        }
+        else if (query.startsWith('so ')) {
+            window.location.href = 'https://duckduckgo.com/?q=' + encodeURIComponent(query.slice(7)) + ' site:https://stackoverflow.com/';
+        }
+        else if (query === 'gc' || query === 'desmos') {
+            window.location.href = 'https://www.desmos.com/calculator';
+        }
+        else if (query === 'ai') {
+            window.location.href = 'https://duck.ai';
+        }
+        else if (/^(?=[^.]*\.)[a-z]*(?:\.[a-z]+)*\/?.*$/.test(query)) {
+            window.location.href = 'https://' + query;
+        }
+        else {
+            window.location.href = 'https://duckduckgo.com/?q=' + encodeURIComponent(query);
+        }
+    }
+});
+
+setInterval(updateDisplay, 1000);
+updateDisplay();
+document.getElementById('searchInput').value = '';
+document.getElementById('searchInput').focus();
