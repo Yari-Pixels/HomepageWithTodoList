@@ -85,10 +85,10 @@ document.getElementById('searchInput').addEventListener('keypress', function (ev
             window.location.href = 'https://duckduckgo.com/?q=' + encodeURIComponent(query.slice(7)) + ' site:https://www.reddit.com';
         }
         else if (query.startsWith('so ')) {
-            window.location.href = 'https://duckduckgo.com/?q=' + encodeURIComponent(query.slice(7)) + ' site:https://stackoverflow.com/';
+            window.location.href = 'https://duckduckgo.com/?q=' + encodeURIComponent(query.slice(3)) + ' site:https://stackoverflow.com/';
         }
-        else if (query.startsWith('so ')) {
-            window.location.href = 'https://duckduckgo.com/?q=' + encodeURIComponent(query.slice(7)) + ' site:https://stackoverflow.com/';
+        else if (query.startsWith('w ')) {
+            window.location.href = 'https://en.wikipedia.org/w/index.php?search=' + encodeURIComponent(query.slice(2));
         }
         else if (query === 'gc' || query === 'desmos') {
             window.location.href = 'https://www.desmos.com/calculator';
