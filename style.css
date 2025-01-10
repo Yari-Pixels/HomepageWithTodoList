@@ -36,6 +36,7 @@ input::placeholder {
     color: #FBD36A;
     border: none;
     font-size: 1.1em;
+    border-radius: 5px;
 }
 
 .date-time-container {
