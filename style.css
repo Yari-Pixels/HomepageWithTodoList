@@ -12,10 +12,16 @@ body {
     justify-content: center;
     align-items: center;
     background-image: url(https://img3.gelbooru.com/images/20/5a/205a3f749fcfd78769fa811b23a8ac52.jpg);
+    background-position: center;
+    background-size: cover;
 }
 
 input:focus {
     outline: none; /* Removes the blue border */
+}
+
+input::placeholder {
+    color: #fbd26a87;
 }
 
 .search {
@@ -153,4 +159,33 @@ li button {
     cursor: pointer;
     font-size: 1em;
     font-weight: bold;
+}
+
+@media (max-width: 1500px) {
+    .search {
+        right: 20px;
+    }
+    .date-time-container {
+        top: 80px;
+    }
+}
+
+@media (max-width: 1100px) {
+    .search {
+        left: 20px;
+    }
+    .to-do-list-container {
+        top: 80px;
+    }
+}
+
+@media (max-width: 780px) {
+    .search {
+        left: 20px;
+    }
+    .to-do-list-container {
+        top: 184px;
+        right: 20px;
+        width: auto;
+    }
 }
