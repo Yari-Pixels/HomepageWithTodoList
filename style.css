@@ -166,6 +166,22 @@ h2 {
     flex-direction: column;
     gap: 20px;
     padding: 0;
+    height: calc(100vh - 208px);
+    overflow-y: scroll;
+}
+
+.task-list::-webkit-scrollbar {
+    display: none; /* Hide scrollbar */
+}
+
+/* Hide scrollbar for Firefox */
+.task-list {
+    scrollbar-width: none; /* Firefox */
+}
+
+/* Hide scrollbar for Internet Explorer and Edge */
+.task-list {
+    -ms-overflow-style: none; /* Internet Explorer and Edge */
 }
 
 .task-list li {
@@ -291,16 +307,24 @@ input[type=color]::-moz-color-swatch {
     .to-do-list-container {
         top: 80px;
     }
+
+    .task-list {
+        height: calc(100vh - 288px);
+    }
 }
 
 @media (max-width: 780px) {
     .search {
         left: 20px;
     }
-
+    
     .to-do-list-container {
         top: 184px;
         right: 20px;
         width: auto;
     }
+    
+        .task-list {
+            height: calc(100vh - 410px);
+        }
 }
