@@ -147,6 +147,7 @@ function loadBackground() {
     const backgroundImage = JSON.parse(localStorage.getItem('background')) || [];
     if (backgroundImage == 0)
         return;
+    document.getElementById('backgroundImage').value = backgroundImage;
     displayBackground(backgroundImage);
 }
 
@@ -187,6 +188,10 @@ function loadColors() {
     const secondaryColor = JSON.parse(localStorage.getItem('secondaryColor')) || [];
     if (!/^#(?:[0-9a-fA-F]{6})$/.test(primaryColor) || !/^#(?:[0-9a-fA-F]{6})$/.test(secondaryColor))
         return;
+    document.getElementById('primaryColor').value = primaryColor;
+    document.getElementById('primaryColorPicker').value = primaryColor;
+    document.getElementById('secondaryColor').value = secondaryColor;
+    document.getElementById('secondaryColorPicker').value = secondaryColor;
     applyColors(primaryColor, secondaryColor);
 }
 
