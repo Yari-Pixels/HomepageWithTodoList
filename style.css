@@ -9,6 +9,10 @@
     box-sizing: border-box;
 }
 
+*::selection {
+    background-color: var(--secondary-transparent);    
+}
+
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -24,6 +28,10 @@ body {
 
 .hidden {
     display: none !important;
+}
+
+.material-symbols-outlined::selection {
+    background-color: transparent;
 }
 
 ul {
