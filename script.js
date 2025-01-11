@@ -71,8 +71,14 @@ document.getElementById('addTaskButton').addEventListener('click', function () {
 document.getElementById('searchInput').addEventListener('keypress', function (event) {
     if (event.key === 'Enter') {
         const query = searchInput.value;
-        if (/^https:\/\/(?=[^.]*\.)[a-z]*(?:\.[a-z]+)*\/?.*$/.test(query)) {
+        if (query.startsWith('d ')) {
+            window.location.href = 'https://duckduckgo.com/?q=' + encodeURIComponent(query.slice(2));
+        }
+        else if (/^https:\/\/(?=[^.]*\.)[a-z]*(?:\.[a-z]+)*\/?.*$/.test(query)) {
             window.location.href = query;
+        }
+        else if (/^(?=[^.]*\.)[a-z]*(?:\.[a-z]+)*\/?.*$/.test(query)) {
+            window.location.href = 'https://' + query;
         }
         else if (query.startsWith('yt ')) {
             window.location.href = 'https://www.youtube.com/results?search_query=' + encodeURIComponent(query.slice(3));
@@ -89,14 +95,14 @@ document.getElementById('searchInput').addEventListener('keypress', function (ev
         else if (query.startsWith('w ')) {
             window.location.href = 'https://en.wikipedia.org/w/index.php?search=' + encodeURIComponent(query.slice(2));
         }
+        else if (query === 'yt') {
+            window.location.href = 'https://www.youtube.com';
+        }
         else if (query === 'gc' || query === 'desmos') {
             window.location.href = 'https://www.desmos.com/calculator';
         }
         else if (query === 'ai') {
             window.location.href = 'https://duck.ai';
-        }
-        else if (/^(?=[^.]*\.)[a-z]*(?:\.[a-z]+)*\/?.*$/.test(query)) {
-            window.location.href = 'https://' + query;
         }
         else {
             window.location.href = 'https://duckduckgo.com/?q=' + encodeURIComponent(query);
