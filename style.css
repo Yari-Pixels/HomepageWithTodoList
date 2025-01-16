@@ -115,7 +115,6 @@ input::placeholder {
     left: 20px;
     top: 20px;
     width: 480px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .to-do-list-header {
@@ -128,6 +127,7 @@ input::placeholder {
     background-color: rgba(0, 0, 0, 0.411);
     color: var(--primary);
     border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .task-input-container {
@@ -200,6 +200,7 @@ h2 {
     border-radius: 5px;
     font-size: 1.1em;
     font-weight: bold;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .task-list li button {
