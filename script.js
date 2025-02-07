@@ -74,10 +74,10 @@ document.getElementById('searchInput').addEventListener('keypress', function (ev
         if (query.startsWith('d ')) {
             window.location.href = 'https://duckduckgo.com/?q=' + encodeURIComponent(query.slice(2));
         }
-        else if (/^https:\/\/(?=[^.]*\.)[a-z]*(?:\.[a-z]+)*\/?.*$/.test(query)) {
+        else if (/^https:\/\/(?=[^.]*\.)[a-z]*(?:\.[a-z]+)*\/?[!-~]*$/.test(query)) {
             window.location.href = query;
         }
-        else if (/^(?=[^.]*\.)[a-z]*(?:\.[a-z]+)*\/?.*$/.test(query)) {
+        else if (/^(?=[^.]*\.)[a-z]*(?:\.[a-z]+)*\/?[!-~]*$/.test(query)) {
             window.location.href = 'https://' + query;
         }
         else if (query.startsWith('yt ')) {
