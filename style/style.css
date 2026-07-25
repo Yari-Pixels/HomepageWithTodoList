@@ -29,6 +29,7 @@ body {
     background-image: url(default.png);
     background-position: center;
     background-size: cover;
+    overflow: hidden;
 }
 
 .hidden {
@@ -43,17 +44,21 @@ ul {
     list-style-type: none;
 }
 
-input {
+input,
+textarea {
     border: none;
     color: inherit;
     font-size: unset;
+    font: inherit;
 }
 
-input:focus {
+input:focus,
+textarea:focus {
     outline: none;
 }
 
-input::placeholder {
+input::placeholder,
+textarea::placeholder {
     color: var(--secondary-transparent);
 }
 
@@ -150,7 +155,7 @@ h2 {
     font-size: 2.5em;
 }
 
-.task-input-container input[type="text"] {
+.task-input-container textarea {
     width: calc(100% - 110px);
     padding: 10px;
     font-weight: bold;
@@ -159,6 +164,10 @@ h2 {
     color: var(--secondary);
     border-radius: 5px 0px 0px 5px;
     font-size: 1.1em;
+    min-height: 41.5px;
+    resize: none;
+    field-sizing: content;
+    max-height: 105px; /* 100 would be nicer number but it just barely cuts off 4th line and I want 4 full lines lol */
 }
 
 .task-input-container button {
@@ -166,10 +175,8 @@ h2 {
     width: 110px;
     border: none;
     background-color: rgba(0, 0, 0, 0.796);
-    ;
     color: var(--secondary);
     border-radius: 0px 5px 5px 0px;
-    ;
     cursor: pointer;
     font-size: 1.1em;
     font-weight: bold;
@@ -196,6 +203,7 @@ h2 {
 .task-list li {
     padding: 10px;
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
     align-items: center;
     padding: 20px;
@@ -207,8 +215,28 @@ h2 {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
+.task-list li .task-text {
+    width: 100%;
+}
+
 .task-list li .task-footer {
-    
+    display: flex;
+    align-items: end;
+    justify-content: end;
+    width: 100%;
+    height: auto;
+    max-height: 0px;
+    transition: max-height 250ms ease;
+    overflow: hidden;
+}
+
+.task-list li .task-footer * {
+    padding-top: 15px;
+    margin-left: 20px;
+}
+
+.task-list li:hover .task-footer {
+    max-height: 250px;
 }
 
 .task-list li button {
