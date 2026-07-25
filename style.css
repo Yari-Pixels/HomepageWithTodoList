@@ -128,6 +128,15 @@ input::placeholder {
     color: var(--primary);
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    height: auto;
+    overflow: hidden;
+    max-height: 86px;
+    transition: max-height 250ms ease;
+}
+
+.to-do-list-header:hover,
+.to-do-list-header:focus-within {
+    max-height: 200px;
 }
 
 .task-input-container {
@@ -176,17 +185,12 @@ h2 {
 }
 
 .task-list::-webkit-scrollbar {
-    display: none; /* Hide scrollbar */
+    display: none;
 }
 
-/* Hide scrollbar for Firefox */
 .task-list {
-    scrollbar-width: none; /* Firefox */
-}
-
-/* Hide scrollbar for Internet Explorer and Edge */
-.task-list {
-    -ms-overflow-style: none; /* Internet Explorer and Edge */
+    scrollbar-width: none;
+    -ms-overflow-style: none;
 }
 
 .task-list li {
@@ -201,6 +205,10 @@ h2 {
     font-size: 1.1em;
     font-weight: bold;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.task-list li .task-footer {
+    
 }
 
 .task-list li button {
@@ -292,16 +300,31 @@ input[type=color]::-moz-color-swatch {
 }
 
 .settings {
+    right: 20px;
+}
+
+.fullscreen {
+    right: 60px;
+}
+
+.settings,
+.fullscreen {
     font-size: 1.1em;
     position: absolute;
     bottom: 20px;
-    right: 20px;
     cursor: pointer;
     color: var(--secondary-transparent);
 }
 
-.settings:hover {
+.settings:hover,
+.fullscreen:hover {
     color: var(--secondary);
+}
+
+.settings::selection,
+.fullscreen::selection {
+    background-color: transparent;
+    color: inherit;
 }
 
 @media (max-width: 1500px) {

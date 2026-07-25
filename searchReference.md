@@ -22,6 +22,4 @@ You can also use keywords to visit sites without needing to type the entire link
 
 - `gc` or `desmos` to open desmos graphing calculator
 
-- `ai` to open ddg's ai chat
-
 - `yt` to open youtube's homepage
