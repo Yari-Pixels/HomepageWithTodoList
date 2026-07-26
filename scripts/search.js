@@ -37,6 +37,7 @@ function processSearch() {
     else {
         openPage('https://duckduckgo.com/?q=' + encodeURIComponent(query));
     }
+    searchInput.value = '';
 }
 
 document.getElementById('searchInput').addEventListener('keypress', function (event) {
