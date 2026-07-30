@@ -10,10 +10,10 @@
 }
 
 *::selection {
-    background-color: var(--secondary-transparent);    
+    background-color: var(--secondary-transparent);
 }
 
-a{
+a {
     color: inherit;
     text-decoration: none;
 }
@@ -140,19 +140,20 @@ textarea::placeholder {
 }
 
 .to-do-list-header:hover,
-.to-do-list-header:focus-within {
-    max-height: 200px;
+.to-do-list-header:focus-within,
+.to-do-list-header:has(#taskInput:not(:placeholder-shown)) {
+    max-height: 400px;
+}
+
+h2 {
+    text-align: center;
+    font-size: 2.5em;
 }
 
 .task-input-container {
     width: 100%;
     display: flex;
     justify-content: center;
-}
-
-h2 {
-    text-align: center;
-    font-size: 2.5em;
 }
 
 .task-input-container textarea {
@@ -167,7 +168,8 @@ h2 {
     min-height: 41.5px;
     resize: none;
     field-sizing: content;
-    max-height: 105px; /* 100 would be nicer number but it just barely cuts off 4th line and I want 4 full lines lol */
+    max-height: 105px;
+    /* 100 would be nicer number but it just barely cuts off 4th line and I want 4 full lines lol */
 }
 
 .task-input-container button {
@@ -235,7 +237,8 @@ h2 {
     margin-left: 20px;
 }
 
-.task-list li:hover .task-footer {
+.task-list li:hover .task-footer,
+.task-list li.edit-mode .task-footer {
     max-height: 250px;
 }
 
@@ -355,6 +358,28 @@ input[type=color]::-moz-color-swatch {
     color: inherit;
 }
 
+.alert {
+    position: absolute;
+    bottom: 20px;
+    width: fit-content;
+    background-color: rgba(0, 0, 0, 0.411);
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    padding: 10px 60px 10px 60px;
+    max-width: calc(100% - 40px);
+    color: var(--secondary);
+    border-radius: 5px;
+    font-size: 1.2em;
+    font-weight: bold;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+}
+
+.alert-text {
+    width: fit-content;
+}
+
 @media (max-width: 1500px) {
     .search {
         right: 20px;
@@ -383,14 +408,14 @@ input[type=color]::-moz-color-swatch {
     .search {
         left: 20px;
     }
-    
+
     .to-do-list-container {
         top: 184px;
         right: 20px;
         width: auto;
     }
-    
-        .task-list {
-            height: calc(100vh - 410px);
-        }
+
+    .task-list {
+        height: calc(100vh - 410px);
+    }
 }

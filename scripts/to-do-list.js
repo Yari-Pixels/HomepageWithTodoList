@@ -1,4 +1,4 @@
-let editedTask = '';
+let taskInEditMode = null;
 
 function loadTasks() {
     const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
@@ -20,7 +20,7 @@ function addTaskToList(task) {
     taskElement.id = task.id;
 
     editButton.addEventListener('click', () => {
-        editTaskStart(task);
+        editTaskButtonPress(task);
     });
 
     deleteButton.addEventListener('click', () => {
@@ -76,24 +76,66 @@ function addTask() {
         taskInput.value = '';
     }
     else {
-        alert('Please enter a task!');
+        showAlert('Task\'s text can\'t be blank!');
     }
 }
 
 function removeTask(task) {
+    if (taskInEditMode !== null && taskInEditMode.id === task.id) {
+        cancelEdit(task);
+    }
     removeTaskFromList(task);
     removeTaskFromStorage(task);
 }
 
-function editTaskStart(task) {
-    editedTask = task;
+function cancelEdit(task) {
+    console.log("cancel task: " + task.id);
+    const taskElement = document.getElementById(task.id);
+    taskElement.classList.remove('edit-mode');
+    
+    const editButton = taskElement.querySelector('.task-edit');
+    editButton.textContent = 'Edit';
+    
+    const taskInputButton = document.getElementById('addTaskButton');
+    taskInputButton.textContent = 'Add Task';
+    
+    const taskInput = document.getElementById('taskInput');
+    taskInput.value = '';
+    
+    taskInEditMode = null;
+}
 
+function startEdit(task) {
+    console.log("edit task: " + task.id);
+    taskInEditMode = task;
+    
+    const taskElement = document.getElementById(task.id);
+    taskElement.classList.add('edit-mode');
+    
+    const editButton = taskElement.querySelector('.task-edit');
+    editButton.textContent = 'Cancel';
+    
     const taskInputButton = document.getElementById('addTaskButton');
     taskInputButton.textContent = 'Edit Task';
-
+    
     const taskInput = document.getElementById('taskInput');
     taskInput.value = task.text;
     taskInput.focus();
+}
+
+function editTaskButtonPress(task) {
+    console.log('button Press: ' + (task === null ? 'null' : task.id));
+
+    if (taskInEditMode === null) {
+        startEdit(task);
+        return
+    }
+    if (taskInEditMode.id !== task.id) {
+        cancelEdit(taskInEditMode);
+        startEdit(task);
+        return;
+    }
+    cancelEdit(task);
 }
 
 function editTask() {
@@ -101,25 +143,32 @@ function editTask() {
     taskInputButton.textContent = 'Edit Task';
 
     const taskInput = document.getElementById('taskInput');
-    editedTask.text = taskInput.value;
+    const taskText = taskInput.value.trim();
+    if (taskText === '') {
+        showAlert('Task\'s text can\'t be blank!');
+        return;
+    }
+
+    taskInEditMode.text = taskText;
     
-    editTaskInStorage(editedTask);
-    editTaskInList(editedTask);
+    editTaskInStorage(taskInEditMode);
+    editTaskInList(taskInEditMode);
+    cancelEdit(taskInEditMode);
     
     document.getElementById('taskInput').value = '';
-    editedTask = '';
+    taskInEditMode = null;
 }
 
 function addOrEditChoice(event) {
     event.preventDefault();
-    if (editedTask === '')
+    if (taskInEditMode === null)
         addTask(event);
     else
         editTask(event);
 }
 
 document.getElementById('addTaskButton').addEventListener('click', addOrEditChoice);
-document.getElementById('addTaskInput').addEventListener('keydown', (event) => {
+document.getElementById('taskInput').addEventListener('keydown', (event) => {
     if (event.key === 'Enter') {
         addOrEditChoice(event)
     }

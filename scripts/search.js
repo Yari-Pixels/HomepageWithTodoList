@@ -3,8 +3,11 @@ function openPage(url) {
 }
 
 function processSearch() {
-    const query = searchInput.value;
-    if (query.startsWith('d ')) {
+    const query = searchInput.value.trim();
+    if (query === null || query === '') {
+        showAlert('Search field can\'t be blank!')
+    }
+    else if (query.startsWith('d ')) {
         openPage('https://duckduckgo.com/?q=' + encodeURIComponent(query.slice(2)));
     }
     else if (/^https:\/\/(?=[^.]*\.)[a-z]*(?:\.[a-z]+)*\/?[!-~]*$/.test(query)) {
