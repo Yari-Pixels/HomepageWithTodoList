@@ -26,7 +26,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-image: url(default.png);
+    background-image: url(./../default.png);
     background-position: center;
     background-size: cover;
     overflow: hidden;
