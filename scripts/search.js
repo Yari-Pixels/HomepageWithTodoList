@@ -1,5 +1,15 @@
+const openSameTab = (() => {
+    const params = new URLSearchParams(window.location.search);
+    return params.has("openSameTab");
+})();
+
 function openPage(url) {
-    window.open(url, '_blank', 'noopener,noreferrer');
+    if (openSameTab) {
+        window.location.href = url;
+    }
+    else {
+        window.open(url, '_blank', 'noopener,noreferrer');
+    }
 }
 
 function processSearch() {
